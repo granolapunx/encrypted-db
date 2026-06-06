@@ -1,12 +1,10 @@
-#ENCRYPTED DATABASE PROJECT — ROADMAP
-=====================================
+# ENCRYPTED DATABASE PROJECT — ROADMAP
 
-#PHASE 1 — Local encrypted notes CLI
--------------------------------------
+## PHASE 1 — Local encrypted notes CLI
 Goal: a working command-line app that encrypts data before it hits disk.
 Everything you build here carries forward to Phase 2.
 
-##Steps:
+### Steps:
   1. Key derivation
      - Install: pip install cryptography
      - Derive a Fernet key from a password using PBKDF2HMAC + SHA256
@@ -31,12 +29,11 @@ Everything you build here carries forward to Phase 2.
 Estimated time: 4-6 hours across a few sessions
 
 
-##PHASE 2 — Cloud encrypted database
--------------------------------------
+## PHASE 2 — Cloud encrypted database
 Goal: move the SQLite backend to a cloud Postgres instance (Supabase).
 The encryption layer from Phase 1 stays exactly the same.
 
-##Steps:
+### Steps:
   1. Cloud backend
      - Sign up for Supabase (free tier)
      - Create a Postgres database and grab the connection string
@@ -58,13 +55,12 @@ The encryption layer from Phase 1 stays exactly the same.
      - Non-negotiable for HIPAA later
 
 
-PHASE 3 — HIPAA compliance layer
--------------------------------------
+## PHASE 3 — HIPAA compliance layer
 Goal: harden Phase 2 into something that could handle real client records.
 Note: true HIPAA compliance also involves administrative/physical safeguards
 beyond code — this covers the technical safeguards portion.
 
-Steps:
+### Steps:
   1. Minimum necessary access
      - Field-level encryption: sensitive fields encrypted individually
      - Role permissions scoped to minimum required data per user
@@ -80,8 +76,7 @@ Steps:
      - Session timeouts, failed login lockouts
 
 
-STACK
--------------------------------------
+## STACK
   cryptography     — Fernet encryption, PBKDF2 key derivation
   SQLAlchemy       — ORM, works with both SQLite and Postgres
   sqlite3          — Phase 1 local storage
@@ -91,12 +86,12 @@ STACK
   python-dotenv    — Keep connection strings out of your code
 
 
-FRIDAY SESSION GOAL
--------------------------------------
+## FRIDAY SESSION GOAL
+
 Get Phase 1 Step 1 working end to end:
   - Password in → PBKDF2 → Fernet key out
   - Encrypt a test string, decrypt it back
   - Salt generated, stored, and reused correctly
 
-Have your buddy install Python and VS Code before he arrives.
-Set up a shared GitHub repo at the start of the session.
+Notes for gabe: 
+- Install VS Code and Python 
