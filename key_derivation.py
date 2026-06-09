@@ -13,14 +13,3 @@ def derive_key(password: str, salt: bytes) -> bytes:
         iterations=480000,
     )
     return base64.urlsafe_b64encode(kdf.derive(password.encode()))
-salt = os.urandom(16)
-key = derive_key("my_secure_password", salt)
-print(key)
-
-# Example usage of the derived key with Fernet for encryption
-fernet = Fernet(key)
-message = "This is a secret message."
-encrypted_message = fernet.encrypt(message.encode())
-print(f"Encrypted message: {encrypted_message}")
-decrypted_message = fernet.decrypt(encrypted_message).decode()
-print(f"Decrypted message: {decrypted_message}")

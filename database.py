@@ -54,5 +54,3 @@ def retrieve_records(db_path: str, password: str): #This function retrieves and 
         decrypted_records.append(decrypted_data)
     
     return decrypted_records
-
-## This is a test to see if the database functions work correctly when the module is imported.
