@@ -3,7 +3,7 @@ import sqlite3
 from cryptography.fernet import Fernet
 from key_derivation import derive_key
 
-def init_db(db_path: str):
+def init_db(db_path: str): #This function initializes the database and creates the necessary tables.
     """Initializes the database and creates the necessary tables."""
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -22,7 +22,7 @@ def init_db(db_path: str):
 
 init_db("records.db")
 
-def insert_record(db_path: str, data: str, password: str):
+def insert_record(db_path: str, data: str, password: str): #This function inserts a new record into the database with encrypted data using the provided password.
     """Inserts a new record into the database with encrypted data."""
     salt = os.urandom(16)
     key = derive_key(password, salt)
@@ -38,7 +38,7 @@ def insert_record(db_path: str, data: str, password: str):
     conn.commit()
     conn.close()
 
-def retrieve_records(db_path: str, password: str):
+def retrieve_records(db_path: str, password: str): #This function retrieves and decrypts all records from the database using the provided password.
     """Retrieves and decrypts all records from the database."""
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -56,8 +56,3 @@ def retrieve_records(db_path: str, password: str):
     return decrypted_records
 
 ## This is a test to see if the database functions work correctly when the module is imported.
-
-init_db("records.db") #calls the function to initialize the database when the module is imported
-insert_record("records.db", "This is a secret message.", "my_secure_password") #calls the function to insert a record into the database when the module is importedq
-retrieve_records("records.db", "my_secure_password") #calls the function to retrieve records from the database when the module is imported
-print (retrieve_records("records.db", "my_secure_password")) #prints the retrieved records to verify that they were decrypted correctly
