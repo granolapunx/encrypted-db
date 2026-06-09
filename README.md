@@ -34,22 +34,24 @@ Goal: move the SQLite backend to a cloud Postgres instance (Supabase).
 The encryption layer from Phase 1 stays exactly the same.
 
 ### Steps:
-  1. Cloud backend
+  1.Set up .env and python-dotenv (very important that this is set up before anything touches Supabase)
+  
+  2. Cloud backend
      - Sign up for Supabase (free tier)
      - Create a Postgres database and grab the connection string
      - Swap SQLite connection for SQLAlchemy + Postgres
 
-  2. App-layer encryption
+  3. App-layer encryption
      - Confirm: data is encrypted in Python BEFORE being sent to Supabase
      - Supabase stores ciphertext blobs only — provider never sees plaintext
      - Test: check Supabase dashboard and confirm data is unreadable
 
-  3. User auth + roles
+  4. User auth + roles
      - Add a users table with bcrypt-hashed passwords
      - Implement role-based access control (RBAC)
      - Different users see different records based on role
 
-  4. Audit logging
+  5. Audit logging
      - Log every read, write, failed access with timestamp + user ID
      - Use SQLAlchemy event listeners or a simple log table
      - Non-negotiable for HIPAA later
